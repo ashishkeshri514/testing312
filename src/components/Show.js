@@ -3,10 +3,12 @@ import "../styles.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const url = "https://searchapi514.herokuapp.com"
+
 const Show = (props) => {
   const { results, info } = props;
   const apiCall = (id)=>{
-     axios.get(`/api/search/${id}`)
+     axios.get(`${url}/api/search/${id}`)
         .then(function (response) {
             // console.log("s");
         })
