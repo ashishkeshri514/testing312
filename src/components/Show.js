@@ -8,7 +8,7 @@ const url = "https://searchapi514.herokuapp.com"
 const Show = (props) => {
   const { results, info } = props;
   const apiCall = (id)=>{
-     axios.get(`${url}/api/search/${id}`)
+     axios.get(`${url}/search/${id}`)
         .then(function (response) {
             // console.log("s");
         })
