@@ -23,7 +23,7 @@ const Home = (props) => {
     e.preventDefault();
     const resp = await axios({
       method: 'get',
-      url: `/allsearch/${state}`,
+      url: `/api/allsearch/${state}`,
       headers:{
         'Content-Type': 'application/json'
       }
@@ -69,7 +69,7 @@ const Home = (props) => {
   useEffect(() => {
     async function getResult() {
           const resp = await axios
-          .get(`/allsearch/${state}`)
+          .get(`/api/allsearch/${state}`)
           .then(function (response) {
               setResults(JSON.parse(response.request.response).posts);
           })

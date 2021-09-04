@@ -6,7 +6,7 @@ import axios from "axios";
 const Show = (props) => {
   const { results, info } = props;
   const apiCall = (id)=>{
-     axios.get(`/search/${id}`)
+     axios.get(`/api/search/${id}`)
         .then(function (response) {
             // console.log("s");
         })
