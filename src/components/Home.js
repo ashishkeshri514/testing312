@@ -4,7 +4,7 @@ import { cx } from "../cx";
 import axios from "axios";
 import Show from "./Show";
 
-const url = "https://searchapi514.herokuapp.com/"
+const url = "https://searchapi514.herokuapp.com"
 
 const Home = (props) => {
   const [state, setState] = useState("");
