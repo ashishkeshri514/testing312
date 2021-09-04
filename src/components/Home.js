@@ -4,6 +4,7 @@ import { cx } from "../cx";
 import axios from "axios";
 import Show from "./Show";
 
+const url = "http://searchapi514.herokuapp.com"
 
 const Home = (props) => {
   const [state, setState] = useState("");
@@ -23,7 +24,7 @@ const Home = (props) => {
     e.preventDefault();
     const resp = await axios({
       method: 'get',
-      url: `/api/allsearch/${state}`,
+      url: `${url}/allsearch/${state}`,
       headers:{
         'Content-Type': 'application/json'
       }
@@ -69,7 +70,7 @@ const Home = (props) => {
   useEffect(() => {
     async function getResult() {
           const resp = await axios
-          .get(`/api/allsearch/${state}`)
+          .get(`${url}/allsearch/${state}`)
           .then(function (response) {
               setResults(JSON.parse(response.request.response).posts);
           })
