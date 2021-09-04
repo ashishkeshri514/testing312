@@ -3,12 +3,15 @@ import { key } from "../API";
 import { cx } from "../cx";
 import axios from "axios";
 import Show from "./Show";
+
+
 const Home = (props) => {
   const [state, setState] = useState("");
   const [results, setResults] = useState([]);
   const [info, setInfo] = useState("");
 
   /*axios
+   .get(`/allsearch/${state}`)
         .get('api/profile/')
         .then(function (response) {
             console.log(response);
@@ -18,17 +21,33 @@ const Home = (props) => {
         }); */
   const searchGoogle = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      `https://9kjnj.sse.codesandbox.io/allsearch/${state}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
+    const resp = await axios({
+      method: 'get',
+      url: `/allsearch/${state}`,
+      headers:{
+        'Content-Type': 'application/json'
       }
-    ).then(function (res) {
-      console.log(res);
+    })
+    .then(function (response) {
+        setResults(JSON.parse(response.request.response).posts);
+    })
+    .catch(function (error) {
+        // console.log(error);
     });
+    // if (resp) {
+    //         setResults(resp);
+    // }
+    // fetch(
+    //   `/allsearch/${state}`,
+    //   {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   }
+    // ).then(function (res) {
+    //   console.log(res);
+    // });
     // try {
     // const response = await axios
     //   .get(`/allsearch/${state}`)
@@ -47,24 +66,19 @@ const Home = (props) => {
     //   console.log(error);
     // }
   };
-  // useEffect(() => {
-  //   async function getResult() {
-  //     if (state) {
-  //       try {
-  //         const response = await axios.get(
-  //           `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${state}`
-  //         );
-  //         if (response) {
-  //           setResults(response.data.items);
-  //           setInfo(response.data.searchInformation);
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   }
-  //   getResult();
-  // }, [state]);
+  useEffect(() => {
+    async function getResult() {
+          const resp = await axios
+          .get(`/allsearch/${state}`)
+          .then(function (response) {
+              setResults(JSON.parse(response.request.response).posts);
+          })
+          .catch(function (error) {
+              // console.log(error);
+          });
+    }
+    if(state) getResult();
+  }, [state]);
   return (
     <div>
       <div className="App">
@@ -81,6 +95,7 @@ const Home = (props) => {
           <input type="submit" value="Search" />
         </form>
       </div>
+      {/* {console.log(results)} */}
       <Show results={results} info={info} />
     </div>
   );

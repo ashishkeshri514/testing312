@@ -1,12 +1,13 @@
 {
   "name": "search",
+  "proxy": "http://searchapi514.herokuapp.com",
   "version": "1.0.0",
-  "proxy": "https://9kjnj.sse.codesandbox.io:8080",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "axios": "0.21.1",
+    "http-proxy-middleware": "^0.19.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "4.2.0",
@@ -23,5 +24,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
